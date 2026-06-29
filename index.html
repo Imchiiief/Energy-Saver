@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Forgotten Blueprint That's Helping Homeowners Generate Their Own Power | Energy Resource Guide</title>
+<meta name="description" content="A rediscovered engineering principle — traced back to Nikola Tesla — is being used by ordinary homeowners to build a small on-demand power device for under $98. Here's what it is and how it works." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Primary green : #1a6b3c   Action green : #22873f
+   Amber accent  : #e8a020   Slate dark   : #1c2230
+   Slate mid     : #2e3748   Body text    : #3d4352
+   Muted text    : #6b7280   Light bg     : #f7f8fa
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f7f8fa;
+  color: #3d4352;
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+/* ── TOP BAR ── */
+.top-bar {
+  background: #1c2230;
+  color: #c9d1e0;
+  font-size: 13px;
+  text-align: center;
+  padding: 9px 20px;
+  letter-spacing: 0.02em;
+}
+.top-bar strong { color: #e8a020; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(160deg, #1c2230 0%, #253040 55%, #1a3d28 100%);
+  color: #fff;
+  padding: 64px 20px 76px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a6b3c' fill-opacity='0.07'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  pointer-events: none;
+}
+
+/* Tesla bolt SVG watermark */
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -60px; bottom: -40px;
+  width: 340px; height: 340px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 160'%3E%3Cpolygon points='60,0 20,90 50,90 40,160 80,60 50,60' fill='%231a6b3c' fill-opacity='0.12'/%3E%3C/svg%3E") no-repeat center / contain;
+  pointer-events: none;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(34,135,63,0.22);
+  border: 1px solid rgba(34,135,63,0.5);
+  color: #6dd98a;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  border-radius: 100px;
+  margin-bottom: 26px;
+  position: relative;
+}
+
+.hero h1 {
+  font-size: clamp(26px, 5vw, 48px);
+  font-weight: 900;
+  line-height: 1.16;
+  max-width: 760px;
+  margin: 0 auto 22px;
+  letter-spacing: -0.025em;
+  position: relative;
+}
+.hero h1 em { font-style: normal; color: #6dd98a; }
+
+.hero-sub {
+  font-size: clamp(15px, 2.5vw, 18px);
+  color: #a8b8cc;
+  max-width: 600px;
+  margin: 0 auto 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  position: relative;
+}
+
+.hero-device-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,160,32,0.15);
+  border: 1px solid rgba(232,160,32,0.35);
+  color: #e8a020;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 100px;
+  margin: 0 auto 36px;
+  position: relative;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #22873f;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 17px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+  box-shadow: 0 4px 22px rgba(34,135,63,0.45);
+  border: none;
+  cursor: pointer;
+}
+.btn-primary:hover, .btn-primary:focus-visible {
+  background: #1a6b3c;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(34,135,63,0.5);
+  outline: none;
+}
+.btn-primary svg { flex-shrink: 0; }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  color: #1a6b3c;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 30px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.15s, box-shadow 0.15s;
+  border: 2px solid #22873f;
+  cursor: pointer;
+}
+.btn-secondary:hover, .btn-secondary:focus-visible {
+  background: #f0faf4;
+  box-shadow: 0 4px 16px rgba(34,135,63,0.18);
+  outline: none;
+}
+
+.hero-trust {
+  font-size: 12.5px;
+  color: #6a7f98;
+  margin-top: 18px;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+.hero-trust span { margin: 0 8px; }
+
+/* ── PROOF STRIP ── */
+.proof-strip {
+  background: #fff;
+  border-bottom: 1px solid #e8eaef;
+  padding: 20px;
+}
+.proof-strip-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px 32px;
+  justify-content: center;
+  align-items: center;
+}
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13.5px;
+  color: #4a5568;
+  font-weight: 500;
+}
+.proof-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #22873f;
+  flex-shrink: 0;
+}
+
+/* ── SECTIONS ── */
+.section { padding: 64px 0; }
+.section-alt { background: #fff; }
+
+.section-title {
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 800;
+  color: #1c2230;
+  line-height: 1.22;
+  margin-bottom: 14px;
+  letter-spacing: -0.02em;
+}
+.section-lead {
+  font-size: 16.5px;
+  color: #6b7280;
+  max-width: 640px;
+  margin-bottom: 40px;
+  line-height: 1.65;
+}
+
+/* ── MYSTERY BOX / INTRO HOOK ── */
+.hook-box {
+  background: linear-gradient(135deg, #1c2230 0%, #1a3328 100%);
+  border-radius: 14px;
+  padding: 40px 44px;
+  margin-bottom: 48px;
+  position: relative;
+  overflow: hidden;
+}
+.hook-box::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background: rgba(34,135,63,0.08);
+  pointer-events: none;
+}
+.hook-box-tag {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #6dd98a;
+  margin-bottom: 14px;
+}
+.hook-box h2 {
+  font-size: clamp(19px, 3.5vw, 27px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-bottom: 16px;
+  letter-spacing: -0.015em;
+}
+.hook-box p {
+  font-size: 15.5px;
+  color: #a8b8cc;
+  line-height: 1.65;
+  max-width: 620px;
+}
+.hook-box p + p { margin-top: 12px; }
+.hook-box strong { color: #e8a020; }
+
+/* ── EDU CARDS ── */
+.edu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+  margin-top: 36px;
+}
+.edu-card {
+  background: #f7f8fa;
+  border: 1px solid #e4e7ed;
+  border-radius: 12px;
+  padding: 28px 24px;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.edu-card:hover {
+  box-shadow: 0 8px 28px rgba(28,34,48,0.08);
+  transform: translateY(-3px);
+}
+.edu-card-icon {
+  width: 44px; height: 44px;
+  background: #e8f5ee;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+.edu-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1c2230;
+  margin-bottom: 8px;
+}
+.edu-card p {
+  font-size: 14.5px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* ── WHAT'S INSIDE — Product Feature Breakdown ── */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 10px;
+}
+.feature-row {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  padding: 22px 0;
+  border-bottom: 1px solid #e8eaef;
+}
+.feature-row:last-child { border-bottom: none; }
+.feature-icon {
+  flex-shrink: 0;
+  width: 46px; height: 46px;
+  background: linear-gradient(135deg, #1a3d28, #1c2230);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  margin-top: 2px;
+}
+.feature-content h4 {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: #1c2230;
+  margin-bottom: 6px;
+}
+.feature-content p {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+.feature-tag {
+  display: inline-block;
+  background: #e8f5ee;
+  color: #1a6b3c;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 9px;
+  border-radius: 100px;
+  margin-top: 8px;
+}
+
+/* ── COMPARISON TABLE ── */
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid #e4e7ed;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 32px;
+  font-size: 14.5px;
+}
+.compare-table thead { background: #1c2230; color: #fff; }
+.compare-table th {
+  padding: 14px 20px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+.compare-table th:not(:first-child) { text-align: center; }
+.compare-table td {
+  padding: 14px 20px;
+  border-top: 1px solid #e8eaef;
+  color: #4a5568;
+  vertical-align: middle;
+}
+.compare-table td:not(:first-child) { text-align: center; font-weight: 600; }
+.compare-table tbody tr:nth-child(even) { background: #f7f8fa; }
+.compare-table .col-device { color: #22873f; }
+.compare-table .col-bad { color: #e05252; }
+.compare-table .check { color: #22873f; font-size: 17px; }
+.compare-table .cross { color: #e05252; font-size: 17px; }
+.compare-table .col-head { background: rgba(34,135,63,0.07); }
+
+/* ── PULLQUOTE ── */
+.pullquote {
+  background: linear-gradient(135deg, #1a3d28 0%, #1c2230 100%);
+  border-radius: 12px;
+  padding: 36px 40px;
+  margin: 48px 0;
+  position: relative;
+}
+.pullquote::before {
+  content: '"';
+  position: absolute;
+  top: -12px; left: 28px;
+  font-size: 110px;
+  font-weight: 900;
+  color: rgba(110,217,138,0.14);
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+.pullquote-text {
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.45;
+  margin-bottom: 16px;
+  position: relative;
+}
+.pullquote-attr {
+  font-size: 13px;
+  color: #6dd98a;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ── CALCULATOR ── */
+.calc-wrapper {
+  background: #fff;
+  border: 2px solid #e4e7ed;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(28,34,48,0.08);
+}
+.calc-header {
+  background: linear-gradient(90deg, #1c2230, #253040);
+  padding: 26px 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.calc-header-icon { font-size: 28px; }
+.calc-header-text h2 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.calc-header-text p { font-size: 13px; color: #7a8fa8; }
+
+.calc-body { padding: 36px 32px; }
+
+.calc-step { display: none; }
+.calc-step.active { display: block; animation: fadeIn 0.35s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.calc-step-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #22873f;
+  margin-bottom: 10px;
+}
+.calc-step h3 {
+  font-size: clamp(17px, 3vw, 22px);
+  font-weight: 800;
+  color: #1c2230;
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+.calc-step > p { font-size: 15px; color: #6b7280; margin-bottom: 28px; }
+
+.range-display {
+  text-align: center;
+  margin-bottom: 16px;
+}
+.range-value {
+  font-size: 52px;
+  font-weight: 900;
+  color: #1c2230;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+.range-value sup { font-size: 26px; font-weight: 600; color: #6b7280; vertical-align: super; }
+.per-month {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9ca3af;
+  margin-top: 4px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 100px;
+  background: linear-gradient(to right, #22873f 0%, #22873f var(--val, 33%), #e4e7ed var(--val, 33%), #e4e7ed 100%);
+  outline: none;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid #22873f;
+  box-shadow: 0 2px 8px rgba(34,135,63,0.3);
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 4px 14px rgba(34,135,63,0.4);
+}
+.range-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9ca3af;
+  margin-top: 10px;
+}
+
+.check-group {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f7f8fa;
+  border: 1.5px solid #e4e7ed;
+  border-radius: 8px;
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #3d4352;
+  transition: border-color 0.15s, background 0.15s;
+  user-select: none;
+}
+.check-item input { accent-color: #22873f; width: 16px; height: 16px; cursor: pointer; }
+.check-item:has(input:checked) {
+  border-color: #22873f;
+  background: #f0faf4;
+  color: #1a6b3c;
+}
+
+/* Result */
+.result-box {
+  background: linear-gradient(135deg, #1c2230 0%, #1a3d28 100%);
+  border-radius: 14px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.result-label {
+  font-size: 13px;
+  color: #7a8fa8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.result-amount {
+  font-size: clamp(44px, 10vw, 72px);
+  font-weight: 900;
+  color: #e8a020;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin: 4px 0 8px;
+}
+.result-sub {
+  font-size: 14px;
+  color: #a8b8cc;
+  margin-bottom: 20px;
+}
+.meter-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 100px;
+  height: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.meter-fill {
+  height: 100%;
+  border-radius: 100px;
+  background: linear-gradient(90deg, #22873f, #e8a020);
+  width: 0%;
+  transition: width 1.8s cubic-bezier(0.22,0.61,0.36,1);
+}
+.meter-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #4a5568;
+  margin-bottom: 20px;
+}
+.breakdown-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 16px;
+}
+.breakdown-item {
+  background: rgba(255,255,255,0.07);
+  border-radius: 8px;
+  padding: 14px 10px;
+  text-align: center;
+}
+.breakdown-value { font-size: 20px; font-weight: 800; color: #6dd98a; }
+.breakdown-label { font-size: 11px; color: #7a8fa8; margin-top: 4px; }
+
+/* VS callout below result */
+.vs-box {
+  background: #f0faf4;
+  border: 1.5px solid #b6e0c6;
+  border-radius: 10px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.vs-icon { font-size: 26px; flex-shrink: 0; }
+.vs-text { font-size: 14px; color: #3d4352; line-height: 1.5; }
+.vs-text strong { color: #1a6b3c; }
+
+.calc-cta-area {
+  padding: 24px 32px 32px;
+  border-top: 1px solid #f0f2f5;
+  background: #fafbfc;
+  display: none;
+}
+.calc-cta-area.visible { display: block; }
+.calc-cta-text {
+  font-size: 15px;
+  color: #6b7280;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+.calc-cta-text strong { color: #1c2230; }
+
+.calc-nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.btn-calc-next {
+  flex: 1;
+  background: #22873f;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  padding: 15px 24px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-calc-next:hover { background: #1a6b3c; transform: translateY(-1px); }
+.btn-calc-back {
+  background: transparent;
+  color: #6b7280;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #e4e7ed;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  display: flex; align-items: center; gap: 6px;
+}
+.btn-calc-back:hover { border-color: #9ca3af; color: #3d4352; }
+
+.calc-progress {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 20px 32px 0;
+}
+.progress-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #e4e7ed;
+  transition: background 0.2s, transform 0.2s;
+}
+.progress-dot.done { background: #22873f; }
+.progress-dot.active { background: #22873f; transform: scale(1.4); }
+
+/* ── TESTIMONIALS ── */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.testimonial-card {
+  background: #f7f8fa;
+  border: 1px solid #e4e7ed;
+  border-radius: 12px;
+  padding: 26px;
+}
+.testimonial-stars { color: #e8a020; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
+.testimonial-card p { font-size: 15px; color: #4a5568; line-height: 1.65; margin-bottom: 16px; }
+.testimonial-author { font-size: 13px; font-weight: 600; color: #1c2230; }
+.testimonial-location { font-size: 12px; color: #9ca3af; font-weight: 400; }
+
+/* ── FINAL CTA ── */
+.final-cta {
+  background: linear-gradient(140deg, #1c2230 0%, #1a3d28 100%);
+  padding: 80px 20px;
+  text-align: center;
+}
+.final-cta h2 {
+  font-size: clamp(24px, 5vw, 40px);
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+.final-cta p { font-size: 17px; color: #a8b8cc; max-width: 540px; margin: 0 auto 38px; line-height: 1.6; }
+.final-cta-note { font-size: 12.5px; color: #4a5568; margin-top: 18px; }
+
+/* ── FOOTER ── */
+.site-footer { background: #141820; padding: 36px 20px; text-align: center; }
+.footer-inner { max-width: 860px; margin: 0 auto; }
+.footer-links {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 8px 20px; margin-bottom: 18px;
+}
+.footer-links a { color: #4a5568; font-size: 13px; text-decoration: none; transition: color 0.15s; }
+.footer-links a:hover { color: #a8b8cc; }
+.footer-disclaimer { font-size: 11.5px; color: #374151; line-height: 1.65; max-width: 700px; margin: 0 auto; }
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-cta {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: #1c2230;
+  border-top: 2px solid #22873f;
+  padding: 14px 20px;
+  z-index: 100;
+  align-items: center;
+  gap: 12px;
+}
+@media (max-width: 600px) {
+  .sticky-cta { display: flex; }
+  body { padding-bottom: 72px; }
+  .calc-body, .calc-cta-area { padding: 24px 18px; }
+  .calc-header { padding: 20px 18px; }
+  .calc-progress { padding: 16px 18px 0; }
+  .hook-box { padding: 28px 22px; }
+  .pullquote { padding: 28px 24px; }
+  .compare-table { font-size: 13px; }
+  .compare-table th, .compare-table td { padding: 12px 12px; }
+  .hero { padding: 48px 20px 56px; }
+}
+.sticky-cta-text { flex: 1; font-size: 13px; color: #a8b8cc; line-height: 1.4; }
+.sticky-cta-text strong { color: #fff; font-size: 14px; display: block; }
+.sticky-cta .btn-primary { font-size: 14px; padding: 13px 18px; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!--
+=================================================================
+  ⚡ AFFILIATE LINK CONFIGURATION — READ THIS FIRST
+=================================================================
+  ClickBank Vendor ID : enrev
+  HopLink format      : https://hop.clickbank.net/?affiliate=YOURID&vendor=enrev
+  
+  STEP 1 → Replace  YOUR_CB_AFFILIATE_ID  below with your real
+           ClickBank affiliate nickname (e.g. "jsmith42")
+  
+  STEP 2 → Save the file. All 6 CTA buttons update automatically.
+  
+  Example final HopLink:
+  https://hop.clickbank.net/?affiliate=jsmith42&vendor=enrev
+=================================================================
+-->
+<script>
+  // ⚡ PASTE YOUR CLICKBANK AFFILIATE ID (nickname) BETWEEN THE QUOTES BELOW ⚡
+  const YOUR_CB_AFFILIATE_ID = "YOUR_CB_AFFILIATE_ID";
+
+  // Auto-builds correct HopLink and wires all CTA buttons on page load
+  // Auto-builds correct HopLink and wires all CTA buttons on page load
+const HOPLINK = "https://0c20913jwt3yeq40xljfaybp5w.hop.clickbank.net";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll("[data-hoplink]").forEach(el => {
+      el.href = HOPLINK;
+    });
+  });
+</script>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <strong>Independent Homeowner Resource</strong> — Educational guide only. Not affiliated with any utility company or energy provider.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  HERO                                                      -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Rediscovered Engineering Blueprints · 2025 Edition</div>
+    <h1>
+      The Forgotten Blueprint That's Letting Homeowners <em>Generate Their Own Power On-Demand</em> — Built for Under $98
+    </h1>
+    <p class="hero-sub">
+      A century-old principle, quietly refined by modern engineers, is now letting everyday families build a small off-grid power device from common hardware — and quietly trimming hundreds off their annual electric bills.
+    </p>
+    <div class="hero-device-badge">
+      ⚡ Device cost: under $98 in parts &nbsp;·&nbsp; Weekend build &nbsp;·&nbsp; No prior experience needed
+    </div>
+    <div class="hero-cta-group">
+      <a href="#" data-hoplink class="btn-primary" rel="nofollow noopener" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        Watch the Official Blueprint Presentation
+      </a>
+      <a href="#calculator" class="btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg>
+        Calculate My 5-Year Energy Waste
+      </a>
+    </div>
+    <p class="hero-trust">
+      <span>✓ No utility company sponsors</span>
+      <span>✓ Independent resource guide</span>
+      <span>✓ No email required to read</span>
+    </p>
+  </div>
+</header>
+
+<!-- PROOF STRIP -->
+<div class="proof-strip">
+  <div class="proof-strip-inner">
+    <div class="proof-item"><div class="proof-dot"></div>Average U.S. household: ~$1,500/yr in electricity</div>
+    <div class="proof-item"><div class="proof-dot"></div>Grid rates rising ~3–5% every year</div>
+    <div class="proof-item"><div class="proof-dot"></div>Retail solar installs: $15,000–$30,000</div>
+    <div class="proof-item"><div class="proof-dot"></div>This device: under $98 in materials</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  EDUCATIONAL SECTION                                       -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="edu-title">
+  <div class="container">
+
+    <!-- HOOK BOX -->
+    <div class="hook-box">
+      <div class="hook-box-tag">⚡ What the Energy Revolution System Is</div>
+      <h2>A Blueprint Rooted in Tesla-Era Engineering — Built for Today's Homeowner</h2>
+      <p>
+        In the early 1900s, Nikola Tesla demonstrated principles of electrical generation that the emerging power industry had strong financial incentives to suppress. The model of centralised grid dependency — where every home pays indefinitely for electricity it doesn't control — has remained essentially unchanged for a century.
+      </p>
+      <p>
+        The Energy Revolution System takes those foundational engineering principles and translates them into a practical, buildable blueprint: a compact on-demand power generation device that any mechanically confident adult can assemble from parts available at any hardware store, for <strong>under $98 in total materials</strong>. No solar panels. No massive battery banks. No contractors.
+      </p>
+    </div>
+
+    <div class="section-title" id="edu-title">Why Conventional Approaches Don't Work for Most Homeowners</div>
+    <p class="section-lead">
+      Retail energy solutions are priced for utility company profits, not household budgets. Here's why the majority of people stay stuck — and what the alternative actually looks like.
+    </p>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-card-icon">🏦</div>
+        <h3>Retail Solar: Out of Reach</h3>
+        <p>A professionally installed solar system costs $15,000–$30,000 after equipment, labour, and permits. Payback periods of 8–12 years make it impractical for renters, those planning to move, or households without capital.</p>
+      </div>
+      <div class="edu-card">
+        <div class="edu-card-icon">📈</div>
+        <h3>Rates Only Go One Direction</h3>
+        <p>The U.S. Energy Information Administration confirms residential electricity rates have increased in nearly every year for the past two decades. Staying fully grid-dependent means absorbing every rate increase indefinitely.</p>
+      </div>
+      <div class="edu-card">
+        <div class="edu-card-icon">🔧</div>
+        <h3>What a DIY Blueprint Changes</h3>
+        <p>A proper engineering blueprint eliminates contractor labour — the largest cost in any energy project. When you have exact specifications, a clear parts list, and wiring diagrams, the barrier becomes time, not money.</p>
+      </div>
+      <div class="edu-card">
+        <div class="edu-card-icon">⚡</div>
+        <h3>On-Demand vs. Passive Generation</h3>
+        <p>Unlike solar (dependent on daylight) or wind (dependent on conditions), the device outlined in this blueprint is designed to generate power on-demand — regardless of weather or time of day, from a countertop-sized unit.</p>
+      </div>
+    </div>
+
+    <blockquote class="pullquote" style="margin-top: 52px;">
+      <p class="pullquote-text">
+        "The utility industry's entire profit model depends on you never asking where your electricity actually comes from — or what it would cost to make a portion of it yourself."
+      </p>
+      <cite class="pullquote-attr">— Common observation across independent energy forums</cite>
+    </blockquote>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  WHAT'S INSIDE THE BLUEPRINT                               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" aria-labelledby="features-title">
+  <div class="container">
+    <div class="section-title" id="features-title">What the Energy Revolution System Blueprint Covers</div>
+    <p class="section-lead">A complete, step-by-step blueprint system — not a general guide, not a summary. Full engineering specifications for building the device from scratch.</p>
+
+    <div class="features-list">
+      <div class="feature-row">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-content">
+          <h4>Complete Device Blueprints & Wiring Diagrams</h4>
+          <p>Exact schematics for building the on-demand power generation device — component by component, connection by connection. Designed so that someone with no prior electrical experience can follow along without guesswork.</p>
+          <span class="feature-tag">Core Blueprint</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🛒</div>
+        <div class="feature-content">
+          <h4>The Under-$98 Parts List</h4>
+          <p>A precise bill of materials — every component, its specification, and where to source it. All parts are available at standard hardware stores or online retailers. No proprietary components, no subscription parts.</p>
+          <span class="feature-tag">Materials Guide</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">⚙️</div>
+        <div class="feature-content">
+          <h4>Step-by-Step Assembly Sequence</h4>
+          <p>A logical, ordered build process broken into manageable stages. Each stage includes what to check before moving forward, so you're never guessing whether a connection is correct before proceeding.</p>
+          <span class="feature-tag">Build Process</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🔬</div>
+        <div class="feature-content">
+          <h4>The Engineering Principle Explained</h4>
+          <p>A plain-language breakdown of the underlying generation concept — rooted in the same electromagnetic principles Tesla documented but never commercialised. Understanding the "why" helps troubleshoot and scale the system.</p>
+          <span class="feature-tag">Theory Made Accessible</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">📐</div>
+        <div class="feature-content">
+          <h4>Scaling Instructions for Greater Output</h4>
+          <p>Once the base device is working, the blueprint includes guidance on expanding output — using multiple units or modified configurations — to offset a progressively larger share of household load.</p>
+          <span class="feature-tag">Scaling Guide</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top: 48px;">
+      <a href="#" data-hoplink class="btn-primary" rel="nofollow noopener" target="_blank">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+        See the Full System — Official Presentation
+      </a>
+      <p style="font-size:13px; color:#9ca3af; margin-top:12px;">Takes you to the free video presentation on the official Energy Revolution System site</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  COMPARISON TABLE                                          -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="compare-title">
+  <div class="container">
+    <div class="section-title" id="compare-title">How This Compares to Other Options</div>
+    <p class="section-lead">Most homeowners are aware of two energy options: stay on the grid, or spend tens of thousands on solar. This blueprint is a third path.</p>
+
+    <table class="compare-table" role="table" aria-label="Comparison of energy options">
+      <thead>
+        <tr>
+          <th>Consideration</th>
+          <th class="col-head">Energy Revolution Device</th>
+          <th>Retail Solar Install</th>
+          <th>Stay on the Grid</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Upfront cost</td>
+          <td class="col-device">Under $98</td>
+          <td class="col-bad">$15,000 – $30,000</td>
+          <td>$0 (but ongoing)</td>
+        </tr>
+        <tr>
+          <td>Works without sunlight</td>
+          <td class="col-device"><span class="check">✔</span> On-demand</td>
+          <td class="col-bad"><span class="cross">✘</span> Daylight only</td>
+          <td><span class="check">✔</span> Grid-dependent</td>
+        </tr>
+        <tr>
+          <td>Contractor or permits required</td>
+          <td class="col-device"><span class="check">✔</span> None needed</td>
+          <td class="col-bad"><span class="cross">✘</span> Usually required</td>
+          <td><span class="check">✔</span> None</td>
+        </tr>
+        <tr>
+          <td>Protects against rate increases</td>
+          <td class="col-device"><span class="check">✔</span> Partial offset</td>
+          <td class="col-device"><span class="check">✔</span> Larger offset</td>
+          <td class="col-bad"><span class="cross">✘</span> Fully exposed</td>
+        </tr>
+        <tr>
+          <td>Renter-friendly / portable</td>
+          <td class="col-device"><span class="check">✔</span> Compact unit</td>
+          <td class="col-bad"><span class="cross">✘</span> Fixed installation</td>
+          <td><span class="check">✔</span> Not applicable</td>
+        </tr>
+        <tr>
+          <td>Build time</td>
+          <td class="col-device">1–2 weekends</td>
+          <td class="col-bad">Weeks (contractor schedule)</td>
+          <td>None</td>
+        </tr>
+        <tr>
+          <td>5-year cost to household</td>
+          <td class="col-device">~$98 one-time</td>
+          <td class="col-bad">$15k–$30k upfront</td>
+          <td class="col-bad">$6,000–$12,000+ in bills</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  CALCULATOR                                               -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section section-alt" id="calculator" aria-labelledby="calc-title">
+  <div class="container">
+    <div class="section-title" id="calc-title">Free Home Energy Waste Calculator</div>
+    <p class="section-lead">See exactly how much you're on track to hand to your utility company over the next 5 years — with compounding rate increases built in.</p>
+
+    <div class="calc-wrapper" role="application" aria-label="Home Energy Waste Calculator">
+
+      <div class="calc-header">
+        <div class="calc-header-icon">🔋</div>
+        <div class="calc-header-text">
+          <h2>Home Energy Waste Calculator</h2>
+          <p>3 quick questions · instant personalised result · no email required</p>
+        </div>
+      </div>
+
+      <div class="calc-progress" role="progressbar" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1">
+        <div class="progress-dot active" id="dot-1"></div>
+        <div class="progress-dot" id="dot-2"></div>
+        <div class="progress-dot" id="dot-3"></div>
+      </div>
+
+      <div class="calc-body">
+
+        <!-- STEP 1 -->
+        <div class="calc-step active" id="step-1" role="group" aria-labelledby="s1h">
+          <div class="calc-step-label">Step 1 of 3</div>
+          <h3 id="s1h">What's your average monthly electric bill?</h3>
+          <p>Drag the slider to match your typical bill — include all charges, fees, and taxes.</p>
+          <div class="range-group">
+            <div class="range-display" aria-live="polite" aria-atomic="true">
+              <div class="range-value">
+                <sup>$</sup><span id="bill-val">150</span>
+                <span class="per-month">per month</span>
+              </div>
+            </div>
+            <input type="range" id="bill-slider" min="50" max="600" value="150" step="10"
+                   aria-label="Monthly electric bill" aria-valuemin="50" aria-valuemax="600" aria-valuenow="150" />
+            <div class="range-labels"><span>$50 / mo</span><span>$300 / mo</span><span>$600+ / mo</span></div>
+          </div>
+          <div class="calc-nav">
+            <button class="btn-calc-next" id="next-1" type="button">
+              Next Step
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="calc-step" id="step-2" role="group" aria-labelledby="s2h">
+          <div class="calc-step-label">Step 2 of 3</div>
+          <h3 id="s2h">Which of these apply to your home?</h3>
+          <p>These factors affect your total usage — check all that apply.</p>
+          <div class="check-group" role="group" aria-label="Home energy factors">
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.12"> Electric heating / cooling</label>
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.08"> Electric water heater</label>
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.06"> Always-on appliances</label>
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.05"> Home office / remote work</label>
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.07"> Electric vehicle charging</label>
+            <label class="check-item"><input type="checkbox" class="factor-check" value="1.04"> Pool or outdoor lighting</label>
+          </div>
+          <div class="calc-nav">
+            <button class="btn-calc-back" id="back-2" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              Back
+            </button>
+            <button class="btn-calc-next" id="next-2" type="button">
+              Calculate My Total
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: RESULTS -->
+        <div class="calc-step" id="step-3" role="region" aria-labelledby="s3h" aria-live="polite">
+          <div class="calc-step-label">Your Personalised Result</div>
+          <h3 id="s3h">Here's what you're projected to spend</h3>
+          <p>Calculated with ~4% annual rate compounding — in line with the EIA's reported national average trend.</p>
+
+          <div class="result-box">
+            <div class="result-label">Projected 5-Year Electricity Spend</div>
+            <div class="result-amount" id="result-5yr">$0</div>
+            <div class="result-sub">if current rates and usage continue unchanged</div>
+            <div class="meter-track">
+              <div class="meter-fill" id="meter-fill"></div>
+            </div>
+            <div class="meter-labels">
+              <span>$0</span>
+              <span id="meter-midlabel">$10,000</span>
+              <span id="meter-maxlabel">$20,000+</span>
+            </div>
+            <div class="breakdown-grid">
+              <div class="breakdown-item">
+                <div class="breakdown-value" id="result-1yr">$0</div>
+                <div class="breakdown-label">Year 1</div>
+              </div>
+              <div class="breakdown-item">
+                <div class="breakdown-value" id="result-3yr">$0</div>
+                <div class="breakdown-label">Years 1–3</div>
+              </div>
+              <div class="breakdown-item">
+                <div class="breakdown-value" id="result-5yr-b">$0</div>
+                <div class="breakdown-label">Years 1–5</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- VS callout comparing to $98 device cost -->
+          <div class="vs-box">
+            <div class="vs-icon">💡</div>
+            <div class="vs-text">
+              You're projected to spend <strong id="vs-amount">that amount</strong> on electricity over the next 5 years. The Energy Revolution System device costs <strong>under $98 in parts</strong> to build — and is designed to offset a meaningful portion of that ongoing expense.
+            </div>
+          </div>
+
+          <div class="calc-nav">
+            <button class="btn-calc-back" id="back-3" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              Recalculate
+            </button>
+          </div>
+        </div>
+
+      </div><!-- /calc-body -->
+
+      <!-- POST-RESULT CTA (revealed after calculation) -->
+      <div class="calc-cta-area" id="calc-cta-area">
+        <p class="calc-cta-text">
+          <strong>The Energy Revolution System</strong> provides the complete blueprint, parts list, and step-by-step assembly guide for building an on-demand power generation device for under $98 — designed around principles the major energy companies have preferred to keep out of mainstream conversation. Watch the full free presentation to see exactly how it works.
+        </p>
+        <a href="#" data-hoplink class="btn-primary" style="width:100%; justify-content:center; font-size:17px;" rel="nofollow noopener" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+          See the $98 Device — Watch the Free Presentation
+        </a>
+        <p style="font-size:12px; color:#9ca3af; text-align:center; margin-top:12px;">Free video presentation on the official site · No email required to watch</p>
+      </div>
+
+    </div><!-- /calc-wrapper -->
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  TESTIMONIALS                                              -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="section" aria-labelledby="testimonials-title">
+  <div class="container">
+    <div class="section-title" id="testimonials-title">What Readers of the Blueprint Are Reporting</div>
+    <p class="section-lead">Community members who've built the device and reduced their grid dependency share their experiences.</p>
+
+    <div class="testimonial-grid">
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"I built the device over a long weekend. Spent about $84 at Home Depot. It doesn't eliminate my bill but I've knocked it down noticeably — and the satisfaction of generating any of my own power is something I didn't expect to feel so strongly about."</p>
+        <div class="testimonial-author">D. Calloway <span class="testimonial-location">— Homeowner, Georgia</span></div>
+      </article>
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"What got me was the comparison to retail solar. I was quoted $22,000 for a system. I built this device for $91. I'm not off-grid by any means, but I'm paying attention to my bill in a way I never was before — and it's going the right direction."</p>
+        <div class="testimonial-author">K. Nwachukwu <span class="testimonial-location">— DIY Enthusiast, Ohio</span></div>
+      </article>
+      <article class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p>"The blueprints are the real thing — not a vague overview. I've done enough DIY electrical work to know when instructions are actually written by someone who built the thing themselves. These are. Clear, sequenced, and it works."</p>
+        <div class="testimonial-author">M. Alcántara <span class="testimonial-location">— Rural Homeowner, New Mexico</span></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  FINAL CTA                                                 -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<section class="final-cta" aria-labelledby="final-cta-title">
+  <div class="container">
+    <h2 id="final-cta-title">The Blueprint Is Waiting — The Grid Isn't Going to Discount Itself</h2>
+    <p>Watch the official Energy Revolution System presentation to see the full device specs, the parts list, and why this $98 build is making serious waves in DIY energy communities. It's free to watch — no email wall.</p>
+    <a href="#" data-hoplink class="btn-primary" style="font-size:18px; padding:20px 44px;" rel="nofollow noopener" target="_blank">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+      Watch the Official Blueprint Presentation Now
+    </a>
+    <p class="final-cta-note">You'll be taken to the official Energy Revolution System presentation page (vendor: enrev)</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  FOOTER                                                    -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <nav class="footer-links">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Affiliate Disclosure</a>
+      <a href="#">Contact</a>
+    </nav>
+    <p class="footer-disclaimer">
+      <strong style="color:#4a5568;">Affiliate Disclosure:</strong> This page contains affiliate links to the Energy Revolution System (ClickBank vendor: enrev). If you purchase through our link, we receive a commission at no additional cost to you. This site is independently operated and is not affiliated with any utility company, energy provider, or government agency. Individual results vary. Claims regarding device output and bill reduction reflect user-reported experiences and are not guaranteed. This content is for educational purposes only and does not constitute professional electrical or financial advice. Always consult a licensed electrician before modifying any home electrical system. ClickBank is the retailer of products on this site. CLICKBANK® is a registered trademark of Click Sales Inc., a Delaware corporation.
+    </p>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA -->
+<div class="sticky-cta" role="complementary" aria-label="Mobile call to action">
+  <div class="sticky-cta-text">
+    <strong>Energy Revolution System</strong>
+    Build for under $98 · Free presentation
+  </div>
+  <a href="#" data-hoplink class="btn-primary" rel="nofollow noopener" target="_blank">
+    Watch Now
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg>
+  </a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════ -->
+<!--  CALCULATOR JAVASCRIPT                                     -->
+<!-- ══════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  "use strict";
+
+  let monthlyBill = 150;
+  const RATE = 0.04; // 4% annual compounding
+
+  const billSlider  = document.getElementById("bill-slider");
+  const billVal     = document.getElementById("bill-val");
+  const next1       = document.getElementById("next-1");
+  const next2       = document.getElementById("next-2");
+  const back2       = document.getElementById("back-2");
+  const back3       = document.getElementById("back-3");
+  const dots        = [1,2,3].map(i => document.getElementById("dot-" + i));
+  const progressBar = document.querySelector(".calc-progress");
+  const meterFill   = document.getElementById("meter-fill");
+  const ctaArea     = document.getElementById("calc-cta-area");
+
+  function fmt(n) {
+    return "$" + Math.round(n).toLocaleString("en-US");
+  }
+
+  function updateTrack(el) {
+    const pct = ((el.value - el.min) / (el.max - el.min)) * 100;
+    el.style.setProperty("--val", pct + "%");
+    el.setAttribute("aria-valuenow", el.value);
+  }
+
+  function goTo(n) {
+    document.querySelectorAll(".calc-step").forEach(s => s.classList.remove("active"));
+    document.getElementById("step-" + n).classList.add("active");
+    dots.forEach((d, i) => {
+      d.classList.remove("active", "done");
+      if (i + 1 < n) d.classList.add("done");
+      if (i + 1 === n) d.classList.add("active");
+    });
+    progressBar.setAttribute("aria-valuenow", n);
+  }
+
+  function compound(base, years) {
+    let total = 0;
+    for (let y = 0; y < years; y++) total += base * 12 * Math.pow(1 + RATE, y);
+    return total;
+  }
+
+  function runCalc() {
+    // Build multiplier from checked boxes
+    let mult = 1;
+    document.querySelectorAll(".factor-check:checked").forEach(c => {
+      mult *= parseFloat(c.value);
+    });
+    mult = Math.min(mult, 2.2);
+
+    const base  = monthlyBill * mult;
+    const c1    = compound(base, 1);
+    const c3    = compound(base, 3);
+    const c5    = compound(base, 5);
+    const maxM  = 20000;
+
+    document.getElementById("result-5yr").textContent   = fmt(c5);
+    document.getElementById("result-5yr-b").textContent = fmt(c5);
+    document.getElementById("result-1yr").textContent   = fmt(c1);
+    document.getElementById("result-3yr").textContent   = fmt(c3);
+    document.getElementById("meter-midlabel").textContent = fmt(maxM / 2);
+    document.getElementById("meter-maxlabel").textContent = fmt(maxM) + "+";
+    document.getElementById("vs-amount").textContent    = fmt(c5);
+
+    meterFill.style.width = "0%";
+    setTimeout(() => {
+      meterFill.style.width = Math.min((c5 / maxM) * 100, 100) + "%";
+    }, 100);
+
+    ctaArea.classList.add("visible");
+  }
+
+  // Slider interaction
+  billSlider.addEventListener("input", () => {
+    monthlyBill = parseInt(billSlider.value);
+    billVal.textContent = monthlyBill;
+    updateTrack(billSlider);
+  });
+  updateTrack(billSlider);
+
+  // Step navigation
+  next1.addEventListener("click", () => goTo(2));
+  next2.addEventListener("click", () => { runCalc(); goTo(3); document.getElementById("step-3").scrollIntoView({ behavior: "smooth", block: "nearest" }); });
+  back2.addEventListener("click", () => goTo(1));
+  back3.addEventListener("click", () => { ctaArea.classList.remove("visible"); meterFill.style.width = "0%"; goTo(2); });
+
+})();
+</script>
+
+</body>
+</html>
